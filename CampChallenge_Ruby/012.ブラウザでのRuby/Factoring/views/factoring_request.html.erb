@@ -1,0 +1,24 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Hello</title>
+</head>
+<body>
+  <p>
+  <% x = @params["num"].to_i
+    i = 2
+    list = Array.new
+    while x != 1 && i < 10
+      if x % i == 0
+        list.push(i)
+        x = x / i
+      else
+        i += 1
+      end
+    end
+  %>
+  </p>
+  <p>元の値は<%= @params["num"] %></p>
+  <p><%= list %></p>
+  <p>余った値は<%= x %><p>
+</body>
