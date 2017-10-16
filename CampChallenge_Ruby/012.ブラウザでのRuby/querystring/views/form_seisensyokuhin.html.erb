@@ -1,0 +1,25 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>生鮮食品</title>
+</head>
+<body>
+<p><%= @params %></p>
+<p>総額<%=@params["total"]%></p>
+<p><%=@params["count"]%>個</p>
+<p>商品種別は<%=@params["type"]%></p>
+<p>一個あたりの値段は<%= @params["total"].to_i / @params["count"].to_i %>円</p>
+<p><%
+  a = 0
+  if 3000 <= @params["total"].to_i &&  @params["total"].to_i < 5000
+    a = @params["total"].to_i * 0.04
+  elsif @params["total"].to_i > 5000
+    a = @params["total"].to_i * 0.05
+  else
+    a = 0
+  end
+    %>
+
+<p>今回のポイントは<%= a %>ポイントです。</p>
+</body>
+</html>
