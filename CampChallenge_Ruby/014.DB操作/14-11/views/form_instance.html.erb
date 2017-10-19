@@ -1,0 +1,19 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>入力結果</title>
+</head>
+<body>
+  <%
+  require 'mysql2'
+  client = Mysql2::Client.new(:host => 'localhost', :username => 'root', :password => 'root', :database => 'Challege_db')
+  statement = client.prepare(%q{select * from profiles where name = ? and age = ? and birthday = ?})
+  result = statement.execute(@params["name"],@params["age"],@params["birthday"])
+ %>
+ <%
+result.each do |key|
+  print(key)
+end
+ %>
+</body>
+</html>
