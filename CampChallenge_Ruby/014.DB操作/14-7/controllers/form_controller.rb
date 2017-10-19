@@ -1,10 +1,10 @@
 require 'rubygems'
 require 'rack'
 
-class TimeController
+class FormController
   def call(env)
 
-    Rack::Response.new(render("time.html.erb"))
+    Rack::Response.new(render("form.html.erb"))
   end
 
   def render(template)
