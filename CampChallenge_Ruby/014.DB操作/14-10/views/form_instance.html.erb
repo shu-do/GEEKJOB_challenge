@@ -1,0 +1,15 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>フォーム入力</title>
+</head>
+<body>
+  <%
+    require 'mysql2'
+    client = Mysql2::Client.new(:host => 'localhost', :username => 'root', :password => 'root', :database => 'Challenge_db')
+    statement = client.prepare(%q{update profiles set name = ?, tel = ?, age = ?, birthday = ? where profilesID = ?})
+    statement.execute(@params["name"],@params["tel"],@params["age"],@params["birthday"],@params["id"])
+   %>
+  <p>DBへの追加完了</p>
+</body>
+</html>
