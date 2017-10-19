@@ -1,0 +1,22 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>フォーム入力</title>
+</head>
+<body>
+  <%
+  require 'mysql2'
+  client = Mysql2::Client.new(:host => 'localhost', :username => 'root', :password => 'root', :database => 'Challenge_db')
+  # p @params["name"]
+  # result = client.query(%q{select * from profiles where name like '%田%'})
+  statement = client.prepare(%q{select * from profiles where name like ?})
+  result = statement.execute("%"+@params["name"]+"%")
+ %>
+ <%=
+ result.each do |key|
+   print(key)
+ end
+ # @params["name"]
+ %>
+</body>
+</html>
