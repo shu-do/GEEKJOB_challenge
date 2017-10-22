@@ -1,0 +1,19 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>入力結果</title>
+</head>
+<body>
+  <%
+  require 'mysql2'
+  client = Mysql2::Client.new(:host => 'localhost', :username => 'root', :password => 'root', :database => 'GEEKJOB_db')
+  result = client.query(%q{select * from syouhinn})
+ %>
+<%= result.each do |key|
+      print(key)\
+    end
+%><br>
+<a href="login" >ログアウト</a><br>
+<a href="/touroku">商品情報の登録へ</a><br>
+</body>
+</html>

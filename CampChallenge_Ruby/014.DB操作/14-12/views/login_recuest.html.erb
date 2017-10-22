@@ -1,0 +1,26 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>入力結果</title>
+</head>
+<body>
+  <%
+  require 'mysql2'
+  client = Mysql2::Client.new(:host => 'localhost', :username => 'root', :password => 'root', :database => 'GEEKJOB_db')
+  statement = client.prepare(%q{select * from zaiko_user where userID = ?})
+  result = statement.execute(@params["userID"])
+  @form = result.first
+  %>
+  <% if @form["pass"] == (@params["pass"]) %>
+    ログイン成功<br>
+    <a href="/touroku">商品情報の登録へ</a><br>
+    <a href="/syouhinn" >商品一覧の確認へ</a><br>
+
+
+  <% else %>
+    ログイン失敗<br>
+    <a href="login" >ログイン画面へ戻る</a><br>
+  <% end %>
+
+</body>
+</html>
