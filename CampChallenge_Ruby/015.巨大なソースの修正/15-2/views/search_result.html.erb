@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>RUMS検索結果画面</title>
+    </head>
+    <body>
+        <h1>検索結果</h1>
+        <table border=1>
+            <tr>
+                <th>名前</th>
+                <th>電話番号</th>
+                <th>生年</th>
+                <th>種別</th>
+                <th>紹介文</th>
+            </tr>
+            <tr>
+              <% @result_users.each do |result_user|%>
+                <td><a href="/result_detail=<%= result_user["userID"]%>"><%= result_user["name"]%></a></td>
+                <td><%= result_user["tell"]%></td>
+                <td><%= result_user["birthday"]%></td>
+                <td><%= case result_user["type"]
+                        when 1
+                         "エンジニア"
+                        when 2
+                         "営業"
+                        when 3
+                          "その他"
+                         end
+                         %></td>
+                <td><%= result_user["comment"]%></td>
+              <% end %>
+            </tr>
+        </table>
+        <p><a href="/search" >検索に戻る</a>
+        <a href="/">トップに戻る</a></p>
+    </body>
+</html>
